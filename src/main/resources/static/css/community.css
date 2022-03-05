@@ -1,0 +1,94 @@
+body {
+    background-color: #efefef;
+}
+.main {
+    margin: 30px;
+    background-color: white;
+}
+
+.btn-publish {
+    float: right;
+    margin: 15px;
+}
+
+.media-object {
+    width: 38px;
+    height: 38px;
+}
+
+.media-heading {
+    padding-top: 10px;
+}
+
+.text-font {
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+
+
+.section {
+    margin-top: 15px;
+}
+
+.community-menu {
+    display: block;
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.community-menu-plus {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.jumbotron {
+    margin: 50px;
+}
+
+.comment {
+    margin: 10px 0;
+}
+
+.btn-comment {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.comment_section {
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.menu .comment-icon:hover {
+    color: #499ef3;
+}
+
+.menu .active {
+    color: #499ef3;
+}
+
+.comment-sp {
+    margin-top: 0;
+}
+
+.sub-comments {
+    border-radius: 5px;
+    margin-top: 10px;
+    border-bottom: 1px solid #eee;
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+.question-related {
+    line-height: 20px;
+    font-size: 12px;
+    margin-left: 0;
+    list-style: none;
+    padding-left: 0;
+
+}

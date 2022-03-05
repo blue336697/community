@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>发布—BLUE电影论坛</title>
+    <link th:include="common::head">
+
+</head>
+<body>
+    <!--导航栏-->
+    <nav th:replace="common :: menu"></nav>
+
+    <div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h3><span class="glyphicon glyphicon-plus" aria-hidden="true"/>发起</h3>
+
+            <form action="/publish" method="post">
+                <input type="hidden" name="id" th:value="${id}">
+                <div class="form-group">
+                    <label for="title">问题标题（简单扼要）：</label>
+                    <input type="text" class="form-control" th:value="${title}" id="title" name="title" placeholder="问题标题...">
+                </div>
+
+                <div class="form-group" id="question-editor">
+                    <label for="description">问题补充（必填，请参考右侧提示）：</label>
+                    <!--这里如果也用value，回显是有问题的-->
+                    <textarea name="description" id="description" class="form-control" th:text="${description}" cols="30" rows="10" style="display:none;">
+
+                    </textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tag">添加标签：</label>
+                    <input type="text" class="form-control"
+                           th:value="${tag}" id="tag" name="tag" autocomplete="off"
+                           placeholder="输入标签，以逗号位分隔符" onclick="showSelectTag()">
+                    <!--默认标签选择栏不展示-->
+                    <div id="select-tag" style="display: none;">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" th:each="selectCategory,selectCategoryStat: ${tags}" th:class="${selectCategoryStat.first ? 'active':''}">
+                                <a th:href="${'#'+selectCategory.categoryName}" aria-controls="home" role="tab" data-toggle="tab" th:text="${selectCategory.categoryName}"></a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" th:id="${selectCategory.categoryName}" th:each="selectCategory: ${tags}" style="padding-top: 10px" th:class="${selectCategoryStat.first ? 'active tab-pane':'tab-pane'}">
+
+                                <h4>
+                                <span class="label label-info" th:each="selectTag:${selectCategory.tags}" style="margin-right: 10px">
+                                    <span class="glyphicon glyphicon-tags" onclick="selectTag(this)" th:data-tag="${selectTag}" th:text="${selectTag}">Java</span>
+                                </span>
+                                </h4>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <span th:if="${error != null}" class="alert alert-danger wAndH" th:text="${error}"></span>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>问题发起指南</h3>
+            ● 问题标题：请用精简的语言描述您发布的问题，不超过25字<br><br>
+            ● 问题补充：详细补充您的问题内容，并确保问题描述清晰直观，并提供一些相关的资料<br><br>
+            ● 选择标签：选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字
+
+        </div>
+    </div>
+</div>
+
+
+    <!-- 页面底部 -->
+    <footer th:replace="common::footer"></footer>
+
+    <th:block th:replace="common::script"></th:block>
+
+
+    <script type="text/javascript">
+        $(function() {
+            var editor = editormd("question-editor", {
+                width  : "100%",
+                height : 600,
+                path   : "/js/lib/",
+                delay : 0,
+                placeholder : "请输入问题描述",
+                imageUpload    : true,
+                imageFormats   : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL : "/file/upload"
+            });
+        });
+    </script>
+</body>
+</html>

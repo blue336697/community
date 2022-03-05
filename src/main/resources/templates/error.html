@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>错误页面</title>
+    <link th:include="common::head">
+
+</head>
+<body>
+    <!--导航栏-->
+    <nav th:replace="common :: menu"></nav>
+
+    <!--内容展示-->
+    <div class="jumbotron" style="margin: 50px;">
+        <h1>出错了！！！</h1>
+        <p th:text="${message}">服务太热了，要不然等一等</p>
+        <p><a class="btn btn-primary btn-lg" href="/" role="button">回到主页</a></p>
+
+        <h2>出错信息如下:</h2>
+        <ul>
+            <li th:each="st : ${exception.stackTrace}">
+                <span th:text="${st}"></span>
+            </li>
+        </ul>
+        <th:block th:replace="common::script"></th:block>
+    </div>
+
+
+</body>
+</html>

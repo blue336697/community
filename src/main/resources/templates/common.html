@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <!--这是公共抽取页面-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/community.css}" href="css/community.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/editormd.min.css}" href="../static/css/editormd.min.css" />
+
+</head>
+<body>
+    <!--页面头部-->
+    <nav class="navbar navbar-default" th:fragment="menu">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">BLUE电影论坛</span>
+            </button>
+            <a class="navbar-brand" href="/">BLUE电影论坛</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-left" action="/" method="get">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" placeholder="搜索电影、影评">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li th:if="${session.user != null}">
+                    <a th:href="@{/publish}">提问</a>
+                </li>
+
+                <li>
+                    <a href="/aboutMe/replies">通知 &nbsp;
+                        <span class="badge" th:text="${session.unreadCount}">42</span>
+                    </a>
+                </li>
+
+
+                <li class="dropdown" th:if="${session.user != null}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span th:text="${session.user.getName()}"></span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/aboutMe/questions">消息中心</a></li>
+                        <li><a href="/logout">退出登录</a></li>
+                    </ul>
+                </li>
+                <li th:if="${session.user == null}">
+                    <a href="https://github.com/login/oauth/authorize?client_id=253f8d41c9d3b362306a&redirect_uri=http://localhost:8080/callback&scope=user&state=1">登录</a>
+                </li>
+                <!--&state=1-->
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- 页面底部 -->
+    <footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <!-- 默认semantic 将一整个div分成16份 -->
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-opacity-mini">二维码</h4>
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img src="../static/images/qq.jpg" th:src="@{/images/qq.jpg}" class="ui rounded image" style="width: 110px;" alt=""/>
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-opacity-mini">影片推荐</h4>
+                    <div id="newBlog-container">
+                        <div class="ui inverted link list">
+                            <a href="#"  target="_blank" class="item">《着魔》</a>
+                            <a href="#"  target="_blank" class="item">《失控玩家》</a>
+                            <a href="#"  target="_blank" class="item">《英国病人》</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header m-opacity-mini">联系我</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Email：duoduo3697@163.com</a>
+                        <a href="#" class="item">QQ：1213132494</a>
+                        <p class="item">(使用qq扫描左边二维码)</p>
+                    </div>
+                </div>
+                <div class="six wide column">
+                    <h4 class="ui inverted header m-opacity-mini">BlueFilm</h4>
+                    <p>这是我的电影论坛，会把近期看到的影片剧集的个人感受分享，希望每一位志同道合的朋友可以各抒己见</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <a th:href="@{https://beian.miit.gov.cn}">湘ICP备2021016863号-1</a>
+            <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2022 BlueFilm All rights Reserved</p>
+        </div>
+    </footer>
+
+    <th:block th:fragment="script">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="/js/community.js"></script>
+        <script src="/js/moment.js"></script>
+        <script src="../static/js/editormd.min.js" th:src="@{/js/editormd.min.js}"></script>
+    </th:block>
+</body>
+</html>
