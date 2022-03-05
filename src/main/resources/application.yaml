@@ -6,18 +6,18 @@ spring:
 
 github:
   client:
-    id: 253f8d41c9d3b362306a
-    secret: 3b11360d2811379936cb3efcb3e2c1755c92d301
+    id: 
+    secret: 
   redirect:
     uri: http://localhost:8080/callback
 
 
 aliyun:
   ufile:
-    public-key: LTAI5tLkukdB7ioHkYR8DM3J
-    private-key: 0AvsWbbDmd7AIDJbKCYr1ad6BrsHmy
-    bucketName: my-community-bucket
-    endpoint: oss-cn-beijing.aliyuncs.com
+    public-key: 
+    private-key: 
+    bucketName: 
+    endpoint: 
 logging:
   file:
     path: community.log
